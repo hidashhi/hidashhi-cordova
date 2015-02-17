@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.hidashhi.cordovaplugin"
+    version="1.0.0">
+
+    <name>HidashHi Cordova Plugin</name>
+    <description></description>
+    <license></license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/hidashhi-cordova.js" name="HidashHi">
+        <clobbers target="cordova.plugins.hidashhi" />
+    </js-module>
+
+    <platform name="android">
+        <source-file src="src/android/com/hidashhi/cordovaplugin/util/AppRTCUtils.java" target-dir="src/com/hidashhi/cordovaplugin/util" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/AppRTCAudioManager.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/AppRTCProximitySensor.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/HidashHiPlugin.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/RTCPeerConnection.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/TrackManager.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/VideoCallUi.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/VideoGLView.java" target-dir="src/com/hidashhi/cordovaplugin" />
+        <source-file src="src/android/com/hidashhi/cordovaplugin/VideoTrackRendererPair.java" target-dir="src/com/hidashhi/cordovaplugin" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="HidashHiPlugin">
+                <param name="android-package" value="com.hidashhi.cordovaplugin.HidashHiPlugin" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-feature android:name="android.hardware.camera" />
+            <uses-feature android:name="android.hardware.camera.autofocus" />
+            <uses-feature android:glEsVersion="0x00020000" android:required="true"></uses-feature>
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+
+        <source-file src="libs/android/libjingle_peerconnection.jar" target-dir="libs"/>
+        <source-file src="libs/android/armeabi-v7a/libjingle_peerconnection_so.so" target-dir="libs/armeabi-v7a"/>
+        <source-file src="libs/android/x86/libjingle_peerconnection_so.so" target-dir="libs/x86"/>
+    </platform>
+</plugin>
